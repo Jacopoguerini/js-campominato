@@ -39,8 +39,11 @@ function arrayPresence(element, list) {
 }
 
 // Selezione difficoltà
-
-
+var difficulty;
+do {
+    var difficulty = parseInt(prompt("Inserisci un numero tra 0 e 2 per selezionare la difficoltà.\n0: facile\n1: intermedio\n2: difficile"));
+} while (isNaN(playerNumber) || difficulty == 0)
+console.log("Difficoltà selezionata: "+ difficulty);
 
 // Creazione di 16 numeri casuali e univoci: lista numeri delle bombe
 while (bombsList.length < bombsNumber) {
@@ -54,7 +57,10 @@ console.log("Elenco bombe: ", bombsList);
 
 // Inserimento numeri da parte dell'utente x volte, con x = NumbersToInsert
 while (attempts.length < maxAttempts && gameOver == false) {
-    var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
+    var playerNumber;
+    do {
+        var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
+    } while (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 100)
 
     // Condizione di fine gioco
 
