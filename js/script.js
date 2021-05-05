@@ -1,4 +1,4 @@
-/*Il computer deve generare 16 numeri casuali tra 1 e 100.
+/*
 I numeri non possono essere duplicati.
 In seguito deve chiedere all'utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
 L'utente non può inserire più volte lo stesso numero.
@@ -12,27 +12,40 @@ var randomEnd = 100;
 // numero di bombe
 var bombsNumber = 16;
 // elenco bombe
-var bombs = [];
+var bombsList = [];
 // numeri da inserire da parte dell'utente
 var numbersToInsert = randomEnd - bombsNumber;
-var playerNumbers = []
+var playerNumbers = [];
 // vite
-var maxAttempts = 5;
+var lives = 5;
+// punteggio
+var score = 0;
 
 // Funzione per generare numeri casuali tra 1 e 100
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// Funzione per univocità 
+function arrayPresence(element, list) {
+
+    for (var i = 0; i < list.length; i++) {
+        if (element == list[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Creazione di 16 numeri casuali: funzione e creazione array
 for (var i = 0; i < bombsNumber; i++) {
-    bombs.push(randomNumber(randomStart, randomEnd));
+    bombsList.push(randomNumber(randomStart, randomEnd));
 }
-console.log(bombs);
+console.log(bombsList);
 
+// Ciclo per far inserire i numeri all'utente x volte con x = NumbersToInsert
 
-// Ciclo per far inserire i numeri all'utente x volte
 for (var i = 0; i < 5; i++) {
-    playerNumbers.push(insertNumber);
+    playerNumbers.push(parseInt(prompt("Inserisci qui un numero tra 1 e 100, diverso ogni volta")));
 }
 console.log(playerNumbers);
