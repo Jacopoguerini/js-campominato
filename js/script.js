@@ -20,6 +20,7 @@ var maxAttempts = 5;
 var attempts = [];
 // punteggio
 var score = 0;
+var gameOver = false;
 
 // Funzione per generare numeri casuali
 function randomNumber(min, max) {
@@ -37,6 +38,10 @@ function arrayPresence(element, list) {
     return false;
 }
 
+// Selezione difficoltà
+
+
+
 // Creazione di 16 numeri casuali e univoci: lista numeri delle bombe
 while (bombsList.length < bombsNumber) {
     var bomb = randomNumber(randomStart, randomEnd);
@@ -48,12 +53,18 @@ while (bombsList.length < bombsNumber) {
 console.log("Elenco bombe: ", bombsList);
 
 // Inserimento numeri da parte dell'utente x volte, con x = NumbersToInsert
-while (attempts.length < maxAttempts) {
+while (attempts.length < maxAttempts && gameOver == false) {
     var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
 
-    if (arrayPresence(playerNumber, attempts) == false) {
+    // Condizione di fine gioco
+
+    if (arrayPresence(playerNumber, bombsList) == true) {
+        gameOver = true;
+    } else if (arrayPresence(playerNumber, attempts) == false) {
         attempts.push(playerNumber);
     }
+    console.log(playerNumber, attempts.length);
 }
-
+score = attempts.length;
+console.log("Il tuo punteggio è: ", score);
 console.log(attempts);
