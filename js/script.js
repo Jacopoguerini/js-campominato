@@ -14,19 +14,19 @@ var bombsNumber = 16;
 // elenco bombe
 var bombsList = [];
 // numeri da inserire da parte dell'utente
-var numbersToInsert = randomEnd - bombsNumber;
-var playerNumbers = [];
-// vite
-var lives = 5;
+// var maxAttempts = randomEnd - bombsNumber;
+// variabile sotto da commentare, solo debug. Decommentare la variabile qui sopra
+var maxAttempts = 5;
+var attempts = [];
 // punteggio
 var score = 0;
 
-// Funzione per generare numeri casuali tra 1 e 100
+// Funzione per generare numeri casuali
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// Funzione per univocità 
+// Funzione per univocità di un numero all'interno di un array
 function arrayPresence(element, list) {
 
     for (var i = 0; i < list.length; i++) {
@@ -37,7 +37,7 @@ function arrayPresence(element, list) {
     return false;
 }
 
-// Creazione di 16 numeri casuali: funzione e creazione array
+// Creazione di 16 numeri casuali e univoci: lista numeri delle bombe
 while (bombsList.length < bombsNumber) {
     var bomb = randomNumber(randomStart, randomEnd);
     
@@ -45,11 +45,15 @@ while (bombsList.length < bombsNumber) {
         bombsList.push(bomb);
     }
 }
-console.log(bombsList);
+console.log("Elenco bombe: ", bombsList);
 
-// Ciclo per far inserire i numeri all'utente x volte con x = NumbersToInsert
+// Inserimento numeri da parte dell'utente x volte, con x = NumbersToInsert
+while (attempts.length < maxAttempts) {
+    var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
 
-for (var i = 0; i < 5; i++) {
-    playerNumbers.push(parseInt(prompt("Inserisci qui un numero tra 1 e 100, diverso ogni volta")));
+    if (arrayPresence(playerNumber, attempts) == false) {
+        attempts.push(playerNumber);
+    }
 }
-console.log(playerNumbers);
+
+console.log(attempts);
