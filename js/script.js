@@ -38,8 +38,12 @@ function arrayPresence(element, list) {
 }
 
 // Creazione di 16 numeri casuali: funzione e creazione array
-for (var i = 0; i < bombsNumber; i++) {
-    bombsList.push(randomNumber(randomStart, randomEnd));
+while (bombsList.length < bombsNumber) {
+    var bomb = randomNumber(randomStart, randomEnd);
+    
+    if (arrayPresence(bomb, bombsList) == false) {
+        bombsList.push(bomb);
+    }
 }
 console.log(bombsList);
 
