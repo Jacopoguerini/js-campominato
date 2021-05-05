@@ -8,18 +8,13 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 // variabili
 var randomStart = 1;
-var randomEnd = 100;
 // numero di bombe
 var bombsNumber = 16;
 // elenco bombe
 var bombsList = [];
-// numeri da inserire da parte dell'utente
-// var maxAttempts = randomEnd - bombsNumber;
-// variabile sotto da commentare, solo debug. Decommentare la variabile qui sopra
-var maxAttempts = 5;
+// tentativi utente
 var attempts = [];
-// punteggio
-var score = 0;
+// fine gioco
 var gameOver = false;
 
 // Funzione per generare numeri casuali
@@ -39,12 +34,30 @@ function arrayPresence(element, list) {
 }
 
 // Selezione difficoltà
-var difficulty;
+var difficultyLevel = [0, 1, 2];
 do {
     var difficulty = parseInt(prompt("Inserisci un numero tra 0 e 2 per selezionare la difficoltà.\n0: facile\n1: intermedio\n2: difficile"));
-} while (isNaN(playerNumber) || difficulty == 0)
+} while (isNaN(difficulty) || arrayPresence(difficulty, difficultyLevel) == false);
 console.log("Difficoltà selezionata: "+ difficulty);
 
+// SWITCH -- test
+var randomEnd;
+switch (difficulty) {
+    case 1:
+        randomEnd = 80;
+        alert("La difficoltà scelta è: INTERMEDIO");
+        break;
+    case 2:
+        randomEnd = 50;
+        alert("La difficoltà scelta è: DIFFICILE");
+        break;
+    default:
+        randomEnd = 100;
+        alert("La difficoltà scelta è: FACILE");
+}
+console.log("Massimo del range: "+ randomEnd);
+
+//LISTA BOMBE
 // Creazione di 16 numeri casuali e univoci: lista numeri delle bombe
 while (bombsList.length < bombsNumber) {
     var bomb = randomNumber(randomStart, randomEnd);
@@ -55,15 +68,16 @@ while (bombsList.length < bombsNumber) {
 }
 console.log("Elenco bombe: ", bombsList);
 
-// Inserimento numeri da parte dell'utente x volte, con x = NumbersToInsert
+//GIOCO
+// Inserimento numeri da parte dell'utente x volte
+var maxAttempts = randomEnd - bombsNumber;
 while (attempts.length < maxAttempts && gameOver == false) {
     var playerNumber;
     do {
         var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
     } while (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 100)
 
-    // Condizione di fine gioco
-
+    // Condizione di fine gioco -- SCONFITTA
     if (arrayPresence(playerNumber, bombsList) == true) {
         gameOver = true;
         alert("Purtroppo hai perso!\nIl tuo punteggio è: " + attempts.length)
@@ -72,9 +86,9 @@ while (attempts.length < maxAttempts && gameOver == false) {
     }
     console.log(playerNumber, attempts.length);
 }
-score = attempts.length;
+// Condizione di fine gioco -- VITTORIA
 if (attempts.length == maxAttempts) {
-    alert("Complimenti, hai vinto!\nIl tuo punteggio è: "+ score);
+    alert("Complimenti, hai vinto!\nIl tuo punteggio è: "+ attempts.length);
 }
 
 console.log(attempts);
