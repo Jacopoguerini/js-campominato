@@ -60,11 +60,15 @@ while (attempts.length < maxAttempts && gameOver == false) {
 
     if (arrayPresence(playerNumber, bombsList) == true) {
         gameOver = true;
+        alert("Purtroppo hai perso!\nIl tuo punteggio è: " + attempts.length)
     } else if (arrayPresence(playerNumber, attempts) == false) {
         attempts.push(playerNumber);
     }
     console.log(playerNumber, attempts.length);
 }
 score = attempts.length;
-console.log("Il tuo punteggio è: ", score);
+if (attempts.length == maxAttempts) {
+    alert("Complimenti, hai vinto!\nIl tuo punteggio è: "+ score);
+}
+
 console.log(attempts);
