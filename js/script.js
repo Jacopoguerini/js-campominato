@@ -45,15 +45,15 @@ var randomEnd;
 switch (difficulty) {
     case 1:
         randomEnd = 80;
-        alert("La difficoltà scelta è: INTERMEDIO");
+        alert("La difficoltà scelta è: INTERMEDIO\nBuona fortuna!");
         break;
     case 2:
         randomEnd = 50;
-        alert("La difficoltà scelta è: DIFFICILE");
+        alert("La difficoltà scelta è: DIFFICILE\nBuona fortuna!");
         break;
     default:
         randomEnd = 100;
-        alert("La difficoltà scelta è: FACILE");
+        alert("La difficoltà scelta è: FACILE\nBuona fortuna!");
 }
 console.log("Massimo del range: "+ randomEnd);
 
