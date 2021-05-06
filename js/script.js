@@ -74,7 +74,7 @@ var maxAttempts = randomEnd - bombsNumber;
 while (attempts.length < maxAttempts && gameOver == false) {
     var playerNumber;
     do {
-        var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e 100:"));
+        var playerNumber = parseInt(prompt("Inserisci qui un numero tra 1 e " + randomEnd));
     } while (isNaN(playerNumber) || playerNumber < randomStart || playerNumber > randomEnd)
 
     // Condizione di fine gioco -- SCONFITTA
